@@ -7,7 +7,7 @@ from sqlalchemy import (
     UniqueConstraint,
 )
 from sqlalchemy.dialects.postgresql import JSONB
-from .base import Base, handle_datetime_columns
+from .base import Base, handle_datetime_columns, handle_json_columns
 import pandas as pd
 import numpy as np
 import json
@@ -44,6 +44,7 @@ class Storm(Base):
 
         df = df.replace({np.nan: None})
         df = handle_datetime_columns(df, ["created_at"])
+        df = handle_json_columns(df, ["other_ids"])
 
         with engine.connect() as conn:
             with conn.begin():

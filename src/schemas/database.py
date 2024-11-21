@@ -7,8 +7,6 @@ from sqlalchemy import text
 from sqlalchemy.exc import ProgrammingError
 
 
-# TODO: This seems a bit hard-coded, but couldn't get it to work otherwise
-# with the dependent columns
 def init_db(engine) -> None:
     """Initialize the database with schema and tables."""
     try:
